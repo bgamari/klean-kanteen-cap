@@ -1,0 +1,64 @@
+// Length refers to axial distance
+
+// Threads
+thread_major_diam = 43.3;
+thread_minor_diam = 39.8;
+thread_height = 3.15; // radial height
+thread_pitch = 6.25;
+thread_length = 20;
+
+// Thickness of wall
+wall_thickness = 2.5;
+
+// Unthreaded region above threads 
+neck_length = 7;
+
+// Top seal
+seal_diam = 2;
+seal_inset = 0.0;
+
+// Flared out top
+top_diam = 50;
+top_length = 20;
+
+module cap() {
+    difference() {
+        union() {
+            rotate_extrude(360*thread_length/thread_pitch, translate=[0,thread_length])
+            translate([thread_minor_diam/2, 0])
+            square([thread_height, (thread_major_diam - thread_minor_diam) / 2]);
+            cylinder(r=thread_minor_diam/2, h=thread_length+neck_length);
+
+            // top
+            translate([0,0,thread_length+neck_length])
+            intersection() {
+                cylinder(r=top_diam/2, h=top_length);
+                sphere(r=1.0*top_diam/2);
+            }
+
+            // handle
+            translate([15, 0, thread_length+neck_length+top_length-4])
+            rotate([0,30,0])
+            difference() {
+                scale([0.8, 1, 1]) cylinder(r=10, h=20);
+                translate([0,0,16])
+                rotate([0, 90, 0])
+                rotate_extrude() translate([10,0]) circle(r=6);
+            }
+        }
+
+        // Seal recess
+        translate([0, 0, thread_length+neck_length-seal_diam/2])
+        rotate_extrude()
+        translate([thread_minor_diam/2-seal_inset, 0])
+        circle(r=seal_diam/2);
+
+        // Hollow out interior
+        translate([0,0,-1])
+        cylinder(r=thread_minor_diam/2 - wall_thickness, h=thread_length+neck_length-5);
+    }
+}
+
+union() {
+    cap();
+}
