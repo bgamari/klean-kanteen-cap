@@ -1,9 +1,9 @@
 // Length refers to axial distance
 
 // Threads
-thread_major_diam = 43.2;
-thread_minor_diam = 39.8;
-thread_height = 3.15; // radial height
+thread_major_diam = 43.5;
+thread_minor_diam = 39.5;
+thread_height = 2.8; // axial height
 thread_pitch = 6.25;
 thread_length = 20;
 
@@ -29,7 +29,7 @@ module cap() {
             // Threads
             rotate_extrude(360*thread_length/thread_pitch, translate=[0,thread_length])
             translate([thread_minor_diam/2, 0])
-            square([thread_height, (thread_major_diam - thread_minor_diam) / 2]);
+            square([(thread_major_diam - thread_minor_diam) / 2, thread_height]);
 
             // top
             translate([0,0,thread_length+neck_length])
