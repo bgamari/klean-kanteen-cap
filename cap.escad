@@ -1,7 +1,7 @@
 // Length refers to axial distance
 
 // Threads
-thread_major_diam = 43.3;
+thread_major_diam = 43.2;
 thread_minor_diam = 39.8;
 thread_height = 3.15; // radial height
 thread_pitch = 6.25;
@@ -24,10 +24,12 @@ top_length = 20;
 module cap() {
     difference() {
         union() {
+            cylinder(r=thread_minor_diam/2, h=thread_length+neck_length);
+
+            // Threads
             rotate_extrude(360*thread_length/thread_pitch, translate=[0,thread_length])
             translate([thread_minor_diam/2, 0])
             square([thread_height, (thread_major_diam - thread_minor_diam) / 2]);
-            cylinder(r=thread_minor_diam/2, h=thread_length+neck_length);
 
             // top
             translate([0,0,thread_length+neck_length])
@@ -39,11 +41,20 @@ module cap() {
             // handle
             translate([15, 0, thread_length+neck_length+top_length-4])
             rotate([0,30,0])
-            difference() {
-                scale([0.8, 1, 1]) cylinder(r=10, h=20);
-                translate([0,0,16])
-                rotate([0, 90, 0])
-                rotate_extrude() translate([10,0]) circle(r=6);
+            intersection() {
+                difference() {
+                    scale([0.8, 1, 1])
+                    cylinder(r=10, h=20);
+
+                    // Hole
+                    translate([0,0,17])
+                    rotate([0, 90, 0])
+                    rotate_extrude() translate([10,0]) circle(r=5);
+                }
+
+                // Round top
+                translate([0, 0, -0])
+                sphere(r=18);
             }
         }
 
