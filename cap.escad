@@ -45,10 +45,10 @@ module cap() {
             intersection() {
                 difference() {
                     scale([0.8, 1, 1])
-                    cylinder(r=10, h=20);
+                    cylinder(r=10, h=28);
 
                     // Hole
-                    translate([0,0,17])
+                    translate([0,0,20])
                     rotate([0, 90, 0])
                     rotate_extrude() translate([10,0]) circle(r=5);
                 }
