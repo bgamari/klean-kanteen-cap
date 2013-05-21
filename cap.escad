@@ -68,6 +68,8 @@ module cap() {
         // Hollow out interior
         translate([0,0,-1])
         cylinder(r=thread_minor_diam/2 - wall_thickness, h=thread_length+neck_length-5);
+        translate([0,0,thread_length+neck_length-5])
+        sphere(r=thread_minor_diam/2 - wall_thickness);
     }
 }
 
