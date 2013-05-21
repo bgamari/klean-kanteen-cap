@@ -32,6 +32,7 @@ module cap() {
             square([(thread_major_diam - thread_minor_diam) / 2, thread_height]);
 
             // top
+            scale([1.1,0.9,1])
             translate([0,0,thread_length+neck_length])
             intersection() {
                 cylinder(r=top_diam/2, h=top_length);
