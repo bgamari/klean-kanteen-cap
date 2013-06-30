@@ -31,7 +31,10 @@ module cap() {
             translate([0,0,thread_start_height])
             rotate_extrude(360*thread_length/thread_pitch, translate=[0,thread_length])
             translate([thread_minor_diam/2, 0])
-            square([(thread_major_diam - thread_minor_diam) / 2, thread_height]);
+            difference() {
+                square([(thread_major_diam - thread_minor_diam) / 2, thread_height]);
+                rotate(-90+20) square([thread_major_diam, thread_major_diam]);
+            }
 
             // top
             scale([1.3, 1.0, 1])
