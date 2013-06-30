@@ -9,7 +9,7 @@ thread_pitch = 6.25;
 thread_length = 20;
 
 // Thickness of wall
-wall_thickness = 2.5;
+wall_thickness = 3.0;
 
 // Unthreaded region above threads 
 neck_length = 7;
