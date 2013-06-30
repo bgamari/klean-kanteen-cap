@@ -1,7 +1,7 @@
 // Length refers to axial distance
 
 // Threads
-thread_major_diam = 43.5;
+thread_major_diam = 43.6;
 thread_minor_diam = 39.5;
 thread_height = 2.8; // axial height
 thread_start_height = 1;
@@ -9,7 +9,7 @@ thread_pitch = 6.25;
 thread_length = 20;
 
 // Thickness of wall
-wall_thickness = 3.0;
+wall_thickness = 3.2;
 
 // Unthreaded region above threads 
 neck_length = 7;
